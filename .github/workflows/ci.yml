@@ -17,18 +17,18 @@ jobs:
     name: Build mobile bundle (Android)
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
-      with:
-        node-version: 16
-        cache: 'npm'
-    - run: npm install
-    - name: Build with Gradle
-    - name: Change to directory
-      working-directory: android
-      run: |
-          ls  # 在 ./path/to/directory 目录中执行 ls 命令
-          echo "Current directory: $(pwd)"  # 打印当前目录路径
+     - uses: actions/checkout@v3
+     - uses: actions/setup-node@v3
+       with:
+         node-version: 16
+         cache: 'npm'
+     - run: npm install
+     - name: Build with Gradle
+     - name: Change to directory
+       working-directory: android
+       run: |
+           ls  # 在 ./path/to/directory 目录中执行 ls 命令
+           echo "Current directory: $(pwd)"  # 打印当前目录路径
 #       run: cd android & gradle assembleRelease
 #     - name: Upload APK
 #       uses: actions/upload-artifact@v1
