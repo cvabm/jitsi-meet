@@ -32,7 +32,7 @@ jobs:
        uses: actions/upload-artifact@v1
        with:
          name: apk
-         path: android/app/build/outputs/apk/release/app-release-unsigned.apk
+         path: android/app/build/outputs/apk/release/app-release.apk
   release:
     name: Release APK
     needs: apk
@@ -63,7 +63,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: apk/app-release-unsigned.apk
+          asset_path: apk/app-release.apk
           asset_name: ${{ github.event.repository.name }}  ${{ steps.branch-name.outputs.current_branch }} v${{ github.run_number }}.${{ github.run_attempt }}.apk
           asset_content_type: application/zip   
      
