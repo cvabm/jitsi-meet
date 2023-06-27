@@ -13,33 +13,6 @@ on:
       - "feature/*"
 
 jobs:
-#   lint:
-#     name: Lint
-#     runs-on: ubuntu-latest
-#     steps:
-#     - uses: actions/checkout@v3
-#     - uses: actions/setup-node@v3
-#       with:
-#         node-version: 16
-#         cache: 'npm'
-#     - name: Get changed files
-#       id: changed-files
-#       uses: tj-actions/changed-files@v35
-#     - name: Get changed lang files
-#       id: lang-files
-#       run: echo "all=$(echo "${{ steps.changed-files.outputs.all_changed_files }}" | grep -oE 'lang\/\S+' | tr '\n' ' ')" >> "$GITHUB_OUTPUT"
-#     - run: npm install
-#     - name: Check git status
-#       run: git status
-#     - name: Normalize lang files to ensure sorted
-#       if: steps.lang-files.outputs.all
-#       run: npm run lang-sort
-#     - name: Check lang files are formatted correctly
-#       if: steps.lang-files.outputs.all
-#       run: npm run lint:lang
-#     - name: Check if the git repository is clean
-#       run: $(exit $(git status --porcelain --untracked-files=no | head -255 | wc -l)) || (echo "Dirty git tree"; git diff; exit 1)
-#     - run: npm run lint:ci && npm run tsc:ci
   android-build:
     name: Build mobile bundle (Android)
     runs-on: ubuntu-latest
@@ -50,5 +23,12 @@ jobs:
         node-version: 16
         cache: 'npm'
     - run: npm install
-    - run: npx react-native bundle --entry-file react/index.native.js --platform android --bundle-output /tmp/android.bundle --reset-cache
+    - name: Build with Gradle
+      run: cd Android & gradle assembleRelease
+    - name: Upload APK
+      uses: actions/upload-artifact@v1
+      with:
+       name: apk
+       path: app/build/outputs/apk/release/app-release-unsigned.apk
+#     - run: npx react-native bundle --entry-file react/index.native.js --platform android --bundle-output /tmp/android.bundle --reset-cache
  
