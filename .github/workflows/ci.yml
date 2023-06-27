@@ -28,12 +28,12 @@ jobs:
        run: |
            ls  # 在 ./path/to/directory 目录中执行 ls 命令
            echo "Current directory: $(pwd)"  # 打印当前目录路径
-              
-#       run: cd android & gradle assembleRelease
-#     - name: Upload APK
-#       uses: actions/upload-artifact@v1
-#       with:
-#        name: apk
-#        path: app/build/outputs/apk/release/app-release-unsigned.apk
+     - name: Build with Gradle 
+       run: gradle assembleRelease
+     - name: Upload APK
+       uses: actions/upload-artifact@v1
+       with:
+        name: apk
+        path: app/build/outputs/apk/release/app-release-unsigned.apk
 #     - run: npx react-native bundle --entry-file react/index.native.js --platform android --bundle-output /tmp/android.bundle --reset-cache
  
