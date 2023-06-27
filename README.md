@@ -25,7 +25,7 @@ Amongst others here are the main features Jitsi Meet offers:
 
 And many more!
 
-## Using Jitsi Meet
+## Using Jitsi Meet 1
 
 Using Jitsi Meet is straightforward, as it's browser based. Head over to [meet.jit.si](https://meet.jit.si) and give it a try. It's anonymous, scalable and free to use. All browsers are supported! 
 
